@@ -1,4 +1,4 @@
-# Application Title: _My Application Title (change)_
+# Application Title: _TeamExercise_
 
 ## Configuration Settings
 
