@@ -7,23 +7,14 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <LinearLayout
+    <TextView android:id="@+id/title_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
-        android:orientation="horizontal">
-        <ImageButton android:id="@+id/search_settings_button"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:src="@drawable/menu"
-            android:tint="@color/black"
-            android:contentDescription="@string/search_param_button"/>
-        <android.widget.SearchView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:background="@color/white"/>
-    </LinearLayout>
+        android:padding="15dp"
+        android:text="@string/main_title"
+        android:textSize="40sp"
+        android:textColor="@color/white"
+        android:background="@color/colorPrimary"/>
 
     <ScrollView
         android:layout_weight="1"
@@ -41,17 +32,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary">
-        <ImageButton android:id="@+id/profile_button_main"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <ImageButton android:id="@+id/bottom_button_left"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="5dp"
             android:src="@drawable/account_edit"
             android:tint="@color/black"
             android:contentDescription="@string/profile_button"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>
-        <ImageButton android:id="@+id/settings_button_main"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <ImageButton android:id="@+id/bottom_button_right"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginEnd="5dp"
             android:src="@drawable/settings"
             android:tint="@color/black"
             android:contentDescription="@string/settings_button"
