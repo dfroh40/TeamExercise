@@ -20,7 +20,7 @@ import androidx.core.content.ContextCompat;
 public class SettingsActivity extends TeamExerciseActivity {
 
     /** Collection of all permissions used */
-    private String[] permissions = {Manifest.permission.ACCESS_COARSE_LOCATION};
+    private final String[] permissions = {Manifest.permission.ACCESS_COARSE_LOCATION};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,7 +78,6 @@ public class SettingsActivity extends TeamExerciseActivity {
                 SharedPreferences.Editor editor = getPrefs().edit();
                 if (isChecked) {
                     editor.putBoolean("m" + label, true);
-                    editor.apply();
                 } else {
                     if (isPermissionGranted(mContext, Manifest.permission.ACCESS_FINE_LOCATION) &&
                             isPermissionGranted(mContext, Manifest.permission.INTERNET)) {
@@ -86,8 +85,8 @@ public class SettingsActivity extends TeamExerciseActivity {
                     }
 
                     editor.putBoolean("m" + label, false);
-                    editor.apply();
                 }
+                editor.apply();
             });
             list.addView(v);
         }

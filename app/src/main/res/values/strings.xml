@@ -18,4 +18,9 @@
     <string name="ok">OK</string>
     <string name="no">NO</string>
     <string name="yes">YES</string>
+    <!-- Strings for exercises -->
+    <string name="basketball">Basketball</string>
+    <string name="baseball">Baseball</string>
+    <string name="football">Football</string>
+    <string name="running">Running</string>
 </resources>
