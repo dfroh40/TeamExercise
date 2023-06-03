@@ -1,11 +1,18 @@
 package cse340.finalproject;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 public abstract class TeamExerciseActivity extends AppCompatActivity {
 
@@ -31,10 +38,17 @@ public abstract class TeamExerciseActivity extends AppCompatActivity {
     private final int[] buttonDescriptions = {R.string.home_button,
             R.string.profile_button, R.string.settings_button};
 
+    /* Interface for accessing and modifying preference data */
+    protected SharedPreferences mSharedPreferences;
+
+    /* Interface for accessing context */
+    protected Context mContext;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_framework);
+        mContext = this;
     }
 
     /**
@@ -81,5 +95,58 @@ public abstract class TeamExerciseActivity extends AppCompatActivity {
     protected void changeActivity(android.content.Context packageContext, Class<?> cls){
         Intent intent = new Intent(packageContext, cls);
         startActivity(intent);
+    }
+
+    // Copied from Accessibility
+    /**
+     * Get the shared preferences for this activity/context based on the app package name.
+     * First time through it gets this from the system.
+     * @return The shared preferences for the application, or null if we were unable to get it.
+     */
+    protected SharedPreferences getPrefs() {
+        if (mSharedPreferences == null) {
+            try {
+                Context context = getApplicationContext();
+                mSharedPreferences = context.getSharedPreferences(
+                        context.getPackageName() + ".PREFERENCES",
+                        Context.MODE_PRIVATE
+                );
+            } catch (Exception e) { // Failed to edit shared preferences file
+                showToast(R.string.shared_pref_error);
+            }
+        }
+        return mSharedPreferences;
+    }
+
+    // Copied from Accessibility
+    /** Show an error toast with the given message ID.
+     * @param id The id of the error message to show in the Toast.
+     */
+    protected void showToast(int id) {
+        Toast.makeText(this, getString(id), Toast.LENGTH_LONG).show();
+    }
+
+    // Copied from Accessibility
+    /**
+     * Checks whether the permission has been granted in the given context.
+     * @param context The context to check self permissions.
+     * @param permission The permissions to check.
+     * @return True if the permissions are granted, otherwise false.
+     */
+    protected boolean isPermissionGranted(Context context, String permission) {
+        return ContextCompat.checkSelfPermission(context, permission) ==
+                PackageManager.PERMISSION_GRANTED;
+    }
+
+    // Copied from Accessibility
+    /**
+     * Show a message dialog with an OK button with the message with the particular string ID.
+     * @param stringID The ID of the message from the xml file to show.
+     */
+    protected void showAlertDialog(int stringID, DialogInterface.OnClickListener positiveCallback) {
+        new AlertDialog.Builder(mContext)
+                .setMessage(getString(stringID))
+                .setPositiveButton(R.string.ok, positiveCallback)
+                .show();
     }
 }

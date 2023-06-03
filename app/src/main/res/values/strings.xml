@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">TeamExercise</string>
+    <!-- Activity change button content descriptions -->
     <string name="settings_button">Settings</string>
     <string name="profile_button">Profile</string>
     <string name="home_button">Home</string>
@@ -8,4 +9,13 @@
     <string name="main_title">Home</string>
     <string name="profile_title">Profile</string>
     <string name="settings_title">Settings</string>
+    <!-- Strings for shared preferences -->
+    <string name="shared_pref_error">There was an error getting shared preferences. Please close the app and restart it.</string>
+    <!-- Strings for settings permission -->
+    <string name="access_needed">You cannot turn on certain services right now because we do not have access to %s. Would you like to give us access?</string>
+    <string name="permission_off_warning">Turning off this does not rescind the app\'s permission, it merely stops it from using said permission. If you don\'t want the app to be able to access this feature anymore, go to your phone\'s settings app and change the permissions there.</string>
+    <!-- Strings for answer boxes -->
+    <string name="ok">OK</string>
+    <string name="no">NO</string>
+    <string name="yes">YES</string>
 </resources>
