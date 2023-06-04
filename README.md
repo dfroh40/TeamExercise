@@ -4,12 +4,16 @@
 
 _Include any gradle or configuration settings that are required for your libraries or app to work_
 
-Gradle must be configured for Mapbox. This is based on the setup from section.
+Gradle must be configured for Mapbox Discover. Installation instructions can be found 
+[here](https://docs.mapbox.com/android/search/guides/install/).
 
 ## API Key
 
 _Let the course staff know whether or not your app requires an API Key and to whom it was sent
 via email_
+
+There is an API key called MAPBOX_DOWNLOADS_TOKEN which has been posted to EdStem in a private
+post located [here](https://edstem.org/us/courses/38124/discussion/3181415).
 
 ## Reading the Code: 
 

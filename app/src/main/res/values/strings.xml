@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">TeamExercise</string>
+    <string name="mapbox_access_token">pk.eyJ1IjoiZG1mcm8iLCJhIjoiY2xodGZ2ZXNjMGZyajN0bDM1b29seGszbCJ9.kchEHTV8wp2X_ePHd404wQ</string>
     <!-- Activity change button content descriptions -->
     <string name="settings_button">Settings</string>
     <string name="profile_button">Profile</string>
