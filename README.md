@@ -4,6 +4,8 @@
 
 _Include any gradle or configuration settings that are required for your libraries or app to work_
 
+Gradle must be configured for Mapbox. This is based on the setup from section.
+
 ## API Key
 
 _Let the course staff know whether or not your app requires an API Key and to whom it was sent
@@ -14,6 +16,8 @@ via email_
 _Detail how you would like the person who grades your app's code to do so. This could include 
 giving them a UML diagram, or what is the best order to read the application files in_
 
+Every other Activity inherits from TeamExerciseActivity. The rest can be read in any order,
+although the implementation order is SettingsActivity, ProfileActivity, and then MainActivity.
 
 ## Other information
 
