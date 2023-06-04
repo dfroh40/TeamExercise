@@ -2,13 +2,20 @@ package cse340.finalproject;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.mapbox.search.ResponseInfo;
+import com.mapbox.search.SearchEngine;
+import com.mapbox.search.SearchEngineSettings;
+import com.mapbox.search.SearchOptions;
+import com.mapbox.search.SearchSuggestionsCallback;
+import com.mapbox.search.result.SearchSuggestion;
+
+import java.util.List;
 
 public class MainActivity extends TeamExerciseActivity {
 
@@ -27,16 +34,52 @@ public class MainActivity extends TeamExerciseActivity {
         // Make layout inflater
         LayoutInflater inflater = LayoutInflater.from(mContext);
         // Populate location list
-        LinearLayout list = findViewById(R.id.option_list);
+        LinearLayout optionList = findViewById(R.id.option_list);
         // Identify that have everything necessary to search
         if(!checkPermissions()){
-            View v = inflater.inflate(R.layout.lacking_data_tab, list);
+            View v = inflater.inflate(R.layout.lacking_data_tab, optionList);
             TextView feedback = v.findViewById(R.id.feedback);
             feedback.setText(R.string.need_permissions);
         } else if(!checkExercises()){
-            View v = inflater.inflate(R.layout.lacking_data_tab, list);
+            View v = inflater.inflate(R.layout.lacking_data_tab, optionList);
             TextView feedback = v.findViewById(R.id.feedback);
             feedback.setText(R.string.need_exercises);
+        } else {
+            //Setup SearchEngine
+            SearchEngine searchEngine = SearchEngine.createSearchEngine(
+                    new SearchEngineSettings(getString(R.string.mapbox_access_token))
+            );
+            // Search
+            for(int exercise : exercises){
+                SearchOptions options = new SearchOptions.Builder().limit(5).build();
+                searchEngine.search(getString(exercise), options,
+                        new SearchSuggestionsCallback(){
+
+                            @Override
+                            public void onError(Exception e) {
+
+                            }
+
+                            @Override
+                            public void onSuggestions(List<SearchSuggestion> list, ResponseInfo responseInfo) {
+                                for(SearchSuggestion suggestion : list){
+                                    // Make an option tab
+                                    View v = inflater.inflate(R.layout.option_tab, optionList, false);
+                                    // Label with current exercise
+                                    TextView label = v.findViewById(R.id.option_name);
+                                    label.setText(exercise);
+                                    // Placeholder for participant # because feature is not implemented
+                                    TextView participants = v.findViewById(R.id.option_participants);
+                                    participants.setText("0 Participants - Feature not implemented");
+                                    // Label with location address
+                                    TextView location = v.findViewById(R.id.option_location);
+                                    location.setText(suggestion.getAddress().formattedAddress());
+                                    optionList.addView(v);
+                                }
+
+                            }
+                });
+            }
         }
     }
 
