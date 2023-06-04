@@ -40,7 +40,7 @@ public abstract class TeamExerciseActivity extends AppCompatActivity {
             R.string.profile_button, R.string.settings_button};
 
     /* Collection of all permissions used */
-    protected final String[] permissions = {Manifest.permission.ACCESS_FINE_LOCATION};
+    protected final String[] permissions = {Manifest.permission.ACCESS_COARSE_LOCATION};
 
     /* Values for user preferred exercises */
     protected final int[] exercises = {R.string.basketball,

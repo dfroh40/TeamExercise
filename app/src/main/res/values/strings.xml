@@ -23,4 +23,7 @@
     <string name="baseball">Baseball</string>
     <string name="football">Football</string>
     <string name="running">Running</string>
+    <!-- Strings for feedback when lacking permissions/exercises -->
+    <string name="need_permissions">This app cannot function without certain permissions. Please enable them in settings.</string>
+    <string name="need_exercises">There are no exercises selected.</string>
 </resources>

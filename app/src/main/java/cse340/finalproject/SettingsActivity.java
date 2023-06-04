@@ -73,10 +73,11 @@ public class SettingsActivity extends TeamExerciseActivity {
                 }
 
                 SharedPreferences.Editor editor = getPrefs().edit();
-                if (button.isChecked()) {
+                if (isChecked) {
                     editor.putBoolean("m" + label, true);
-                } else if(!button.isChecked()){
-                    if (isPermissionGranted(mContext, Manifest.permission.ACCESS_FINE_LOCATION)) {
+                } else {
+                    if (isPermissionGranted(mContext, Manifest.permission.ACCESS_FINE_LOCATION) &&
+                            isPermissionGranted(mContext, Manifest.permission.INTERNET)) {
                         showAlertDialog(R.string.permission_off_warning, null);
                     }
 
