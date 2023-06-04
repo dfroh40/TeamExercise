@@ -58,6 +58,7 @@ public class ProfileActivity extends TeamExerciseActivity {
                 }
                 editor.apply();
             });
+            list.addView(v);
         }
     }
 }

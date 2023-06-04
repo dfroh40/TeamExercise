@@ -1,5 +1,6 @@
 package cse340.finalproject;
 
+import android.Manifest;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -37,6 +38,9 @@ public abstract class TeamExerciseActivity extends AppCompatActivity {
     /* Values for setting the button content description */
     private final int[] buttonDescriptions = {R.string.home_button,
             R.string.profile_button, R.string.settings_button};
+
+    /* Collection of all permissions used */
+    protected final String[] permissions = {Manifest.permission.ACCESS_FINE_LOCATION};
 
     /* Values for user preferred exercises */
     protected final int[] exercises = {R.string.basketball,

@@ -19,9 +19,6 @@ import androidx.core.content.ContextCompat;
 
 public class SettingsActivity extends TeamExerciseActivity {
 
-    /** Collection of all permissions used */
-    private final String[] permissions = {Manifest.permission.ACCESS_COARSE_LOCATION};
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,7 +57,7 @@ public class SettingsActivity extends TeamExerciseActivity {
             // Set button listener
             button.setOnCheckedChangeListener((buttonView, isChecked) -> {
                 // Copied from Accessibility but with some modifications
-                if(isPermissionGranted(mContext, permission)) {
+                if(!isPermissionGranted(mContext, permission)) {
                     button.setChecked(false);
 
                     new AlertDialog.Builder(mContext)
@@ -76,11 +73,10 @@ public class SettingsActivity extends TeamExerciseActivity {
                 }
 
                 SharedPreferences.Editor editor = getPrefs().edit();
-                if (isChecked) {
+                if (button.isChecked()) {
                     editor.putBoolean("m" + label, true);
-                } else {
-                    if (isPermissionGranted(mContext, Manifest.permission.ACCESS_FINE_LOCATION) &&
-                            isPermissionGranted(mContext, Manifest.permission.INTERNET)) {
+                } else if(!button.isChecked()){
+                    if (isPermissionGranted(mContext, Manifest.permission.ACCESS_FINE_LOCATION)) {
                         showAlertDialog(R.string.permission_off_warning, null);
                     }
 
